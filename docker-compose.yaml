@@ -1,0 +1,16 @@
+services:
+  rasa:
+    image: rasa/rasa:3.6.20-full
+    ports:
+      - "5005:5005"
+    volumes:
+      - ./:/app
+    command: >
+      run -m models --enable-api --cors "*" --debug --port 5005
+
+  actions:
+    image: rasa/rasa-sdk:3.17.2
+    ports:
+      - "5055:5055"
+    volumes:
+      - ./actions:/app/actions
